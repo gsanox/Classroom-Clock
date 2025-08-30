@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-controls">
+                <div id="settings-btn" title="Configuración">⚙️</div>
+                <button id="pause-resume-btn" class="btn" title="Pausar/Reanudar">⏸️</button>
+                <button id="mute-btn" class="btn" title="Activar/Silenciar Sonido">🔊</button>
+            </div>
+            <div id="date-card">
+                <p id="date-day-name"></p>
+                <p id="date-day-number"></p>
+                <p id="date-month-year"></p>
+            </div>
+        </header>
+
+        <main>
+            <h1 id="block-title">Cargando...</h1>
+            <div id="timer-display">--:--</div>
+        </main>
+    </div>
+
+    <footer>
+        <div id="progress-bar"></div>
+    </footer>
+
+    <!-- The Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+            <h2>Configuración de Bloques</h2>
+            
+            <div id="blocks-list-editor"></div>
+
+            <button id="add-block-btn" class="btn">+ Añadir Nuevo Bloque</button>
+
+            <hr>
+
+            <h3>Perfiles</h3>
+            <div class="profile-actions">
+                <button id="save-profile-btn" class="btn profile-btn" title="Guardar en Navegador">💾</button>
+                <button id="load-profile-btn" class="btn profile-btn" title="Cargar desde Navegador">📂</button>
+                <button id="export-json-btn" class="btn profile-btn" title="Exportar a Archivo">⬆️</button>
+                <label for="import-json-input" class="btn profile-btn" title="Importar desde Archivo">⬇️</label>
+                <input type="file" id="import-json-input" accept=".json" style="display: none;">
+            </div>
+
+            <hr>
+
+            <button id="save-settings-btn" class="btn primary-btn">Guardar Cambios y Reiniciar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

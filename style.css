@@ -1,0 +1,326 @@
+:root {
+    --bg-color: #1F2128;
+    --card-bg-color: #2C2F3A;
+    --text-color: #F0F0F0;
+    --accent-color: #6A8BFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+    width: 90%;
+    max-width: 1200px;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+#date-card {
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 200px;
+}
+
+#date-day-name {
+    font-weight: 300;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+#date-day-number {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0.5rem 0;
+    color: var(--accent-color);
+}
+
+#date-month-year {
+    font-weight: 400;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#block-title {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+#timer-display {
+    font-size: 10rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: var(--accent-color);
+    text-shadow: 0 0 20px rgba(106, 139, 255, 0.3);
+}
+
+
+
+footer {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 25px;
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.progress-segment {
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    opacity: 0.4;
+    cursor: pointer;
+    position: relative; /* Necesario para el relleno interior */
+    overflow: hidden; /* Para que el relleno no se salga */
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; /* Inicia sin relleno */
+    background-color: rgba(0, 0, 0, 0.2); /* Sombra oscura */
+    transition: width 0.2s linear; /* Transición suave */
+}
+
+.progress-segment.active {
+    opacity: 1;
+    transform: scaleY(1.1);
+    border-top: 2px solid var(--text-color);
+    border-bottom: 2px solid var(--text-color);
+}
+
+/* --- Settings Icon --- */
+.header-controls {
+    position: absolute;
+    top: 2.5rem;
+    left: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#settings-btn, #pause-resume-btn, #mute-btn {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    padding: 0;
+}
+
+#settings-btn:hover, #pause-resume-btn:hover, #mute-btn:hover {
+    transform: scale(1.15);
+}
+
+#settings-btn:hover {
+    transform: scale(1.15) rotate(45deg);
+}
+
+/* --- Modal Styles --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    margin: 5% auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+    position: relative;
+}
+
+.modal-close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#blocks-list-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.block-editor-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.2);
+    cursor: move; /* Indica que se puede arrastrar */
+}
+
+.block-editor-row.dragging {
+    opacity: 0.5;
+}
+
+.block-editor-row input[type="text"],
+.block-editor-row input[type="number"] {
+    font-family: 'Poppins', sans-serif;
+    background-color: #3c404d;
+    color: var(--text-color);
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.block-editor-row input[type="text"] {
+    flex-grow: 1;
+}
+
+.block-editor-row input[type="number"] {
+    width: 80px;
+}
+
+.block-editor-row input[type="color"] {
+    min-width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.btn {
+    font-family: 'Poppins', sans-serif;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.delete-block-btn {
+    background-color: #E24A4A;
+    color: white;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+#add-block-btn {
+    width: 100%;
+    background-color: #4a8fe2;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.profile-btn {
+    background-color: #6c757d;
+    color: white;
+    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.primary-btn {
+    width: 100%;
+    background-color: #50E3C2;
+    color: var(--bg-color);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+hr {
+    border: 1px solid #444;
+    margin: 2rem 0;
+}
